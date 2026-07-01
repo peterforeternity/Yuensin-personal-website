@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enyu Chen | Personal Website</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;       /* 深蓝偏黑底色，极具科技感 */
+            --card-bg: #1e293b;        /* 盒子卡片底色 */
+            --text-main: #f8fafc;      /* 主文字颜色 */
+            --text-muted: #94a3b8;     /* 次要文字颜色 */
+            --accent-color: #38bdf8;   /* 亮蓝色点缀色 */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* 导航栏 */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            letter-spacing: 1px;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 20px;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* 通用区块容器 */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        /* Hero 欢迎区域 */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+
+        .hero-content h1 span {
+            color: var(--accent-color);
+        }
+
+        .hero-content .tagline {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            padding: 12px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(56, 189, 248, 0.4);
+        }
+
+        /* 分区标题 */
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        /* 关于我区域 */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .about-grid { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 2.5rem; }
+        }
+
+        .skills-tag span {
+            display: inline-block;
+            background-color: var(--card-bg);
+            color: var(--accent-color);
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        /* 项目作品库区域 */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border-color: rgba(56, 189, 248, 0.3);
+        }
+
+        .project-card h3 {
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .project-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .project-tech {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* 页脚联系区域 */
+        footer {
+            background-color: #020617;
+            text-align: center;
+            padding: 60px 20px;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        footer p {
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .contact-email {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            color: var(--text-main);
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 导航栏 -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">YuenSin</div>
+            <nav class="nav-links">
+                <a href="#hero">首页</a>
+                <a href="#about">关于我</a>
+                <a href="#projects">项目与兴趣</a>
+                <a href="#contact">联系我</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 首页欢迎区 -->
+    <section id="hero">
+        <div class="container hero-content">
+            <h1>你好，我是 <span>Enyu Chen</span></h1>
+            <div class="tagline">Rookie of CS | 电子竞技与科技半导体股票研究爱好者</div>
+            <a href="#projects" class="btn">探索我的世界</a>
+        </div>
+    </section>
+
+    <!-- 关于我区块 -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">关于我</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>欢迎来到我的个人空间！我是 Enyu Chen（你也可以叫我 YuenSin）。目前我正以 <strong>Rookie of CS</strong> 的身份在计算机科学的世界里摸索前行。对我来说，代码不仅仅是工具，更是将脑海中的想法转化为现实的魔法。</p>
+                    <br>
+                    <p>在屏幕与键盘之外，我有着两个长期坚持的硬核爱好：钻研<strong>电子竞技</strong>的战术与生态，以及紧跟<strong>科技与半导体行业</strong>的步伐。我喜欢观察顶级芯片厂商的技术更迭，并热衷于从微观的财报数据中寻找科技牛股的宏观脉络。理性的逻辑分析与激进的电竞赛场，共同构成了我的生活主旋律。</p>
+                </div>
+                <div class="about-skills">
+                    <h3>关注领域</h3>
+                    <br>
+                    <div class="skills-tag">
+                        <span>HTML / CSS</span>
+                        <span>Java Programming</span>
+                        <span>Esports Analysis</span>
+                        <span>Semiconductor Stocks</span>
+                        <span>Hardware & Tech</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 项目与兴趣展示区块 -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">项目与研究展示</h2>
+            <div class="project-grid">
+                
+                <!-- 卡片 1 -->
+                <div class="project-card">
+                    <h3>个人原生网站搭建</h3>
+                    <p>纯手工编写的个人主页项目。通过不依赖框架的开发过程，深入掌握了 HTML5 骨架搭建和 CSS3 现代化布局（Flexbox/Grid）的底层原理，这是我前端探索的第一步。</p>
+                    <div class="project-tech">技术栈: HTML / CSS / Git</div>
+                </div>
+
+                <!-- 卡片 2 -->
+                <div class="project-card">
+                    <h3>半导体股票与宏观科技观察</h3>
+                    <p>追踪半导体板块（如 Nvidia、Intel、AMD）的最新财报与芯片架构更迭。尝试通过行业上下游数据分析科技巨头的成长估值，建立属于自己的科技股观察笔记。</p>
+                    <div class="project-tech">领域: 财务分析 / 硬件技术追踪</div>
+                </div>
+
+                <!-- 卡片 3 -->
+                <div class="project-card">
+                    <h3>电子竞技战术与数据拆解</h3>
+                    <p>作为电竞死忠粉，热衷于复盘职业比赛、分析职业选手的硬核动态数据和战队战术走向。将对游戏的热爱转化为更深层次的数据与策略思考。</p>
+                    <div class="project-tech">领域: 电竞生态 / 数据观察</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚与联系方式 -->
+    <footer id="contact">
+        <div class="container" style="padding: 20px 0;">
+            <p>对我的研究、代码感兴趣，或者想切磋一下电竞与股票？欢迎随时联系！</p>
+            <a href="mailto:peterforeternal@qq.com" class="contact-email">📧 peterforeternal@qq.com</a>
+            <div class="social-links">
+                <a href="https://github.com/peterforeternity" target="_blank">GitHub (peterforeternity)</a>
+            </div>
+            <br>
+            <p style="font-size: 0.8rem; color: #475569;">&copy; 2026 Enyu Chen. Powered by HTML & CSS.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
